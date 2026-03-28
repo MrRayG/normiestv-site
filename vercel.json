@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/podcast", "destination": "/podcast.html" }
+  ]
+}
