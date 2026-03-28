@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NormiesTV — The CNN of the On-Chain Era</title>
+  <title>NormiesTV — The Discovery of Web3</title>
   <meta name="description" content="Autonomous. AI-driven. On-chain truth. NormiesTV is the world's first autonomous AI-driven media platform built on the NORMIES NFT ecosystem.">
-  <meta property="og:title" content="NormiesTV — The CNN of the On-Chain Era">
+  <meta property="og:title" content="NormiesTV — The Discovery of Web3">
   <meta property="og:description" content="Autonomous. AI-driven. On-chain truth. The world's first autonomous media platform covering the on-chain world without bias, hype, or paid shilling.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://normies.tv">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NormiesTV — The CNN of the On-Chain Era">
+  <meta name="twitter:title" content="NormiesTV — The Discovery of Web3">
   <meta name="twitter:description" content="Autonomous. AI-driven. On-chain truth. No paid shilling. No hype language. No stat dumps.">
   <meta name="theme-color" content="#0f0f0f">
 
@@ -30,9 +30,9 @@
       --text: #e8e8e8;
       --text-muted: #888888;
       --text-faint: #555555;
-      --teal: #2dd4bf;
-      --teal-dim: rgba(45, 212, 191, 0.15);
-      --teal-glow: rgba(45, 212, 191, 0.08);
+      --accent: #f97316;
+      --accent-dim: rgba(249, 115, 22, 0.15);
+      --accent-glow: rgba(249, 115, 22, 0.08);
 
       --font-display: 'Clash Display', 'Arial Black', sans-serif;
       --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
@@ -68,21 +68,20 @@
     }
 
     a {
-      color: var(--teal);
+      color: var(--accent);
       text-decoration: none;
       transition: color var(--transition-interactive), opacity var(--transition-interactive);
     }
     a:hover { opacity: 0.8; }
 
     ::selection {
-      background: rgba(45, 212, 191, 0.25);
+      background: rgba(249, 115, 22, 0.25);
       color: var(--text);
     }
 
     :focus-visible {
-      outline: 2px solid var(--teal);
+      outline: 2px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 4px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -150,7 +149,7 @@
       transform: translate(-50%, -50%);
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
       pointer-events: none;
       opacity: 0;
       animation: heroGlow 2s 0.5s var(--ease-out) forwards;
@@ -181,24 +180,24 @@
       50% { opacity: 0.8; }
     }
 
-    /* ===== HERO TITLE ===== */
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: var(--text-hero);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      color: var(--text);
-      margin-bottom: 1rem;
+    /* ===== NORMIESTV PIXEL LOGO ===== */
+    .ntv-logo {
       opacity: 0;
       animation: fadeUp 1s 0.4s var(--ease-out) forwards;
+      margin-bottom: 1rem;
+    }
+
+    .ntv-logo svg {
+      width: clamp(220px, 40vw, 420px);
+      height: auto;
+      display: block;
     }
 
     .hero-tagline {
       font-family: var(--font-body);
       font-size: var(--text-xl);
       font-weight: 500;
-      color: var(--teal);
+      color: var(--accent);
       letter-spacing: 0.01em;
       margin-bottom: 2.5rem;
       opacity: 0;
@@ -208,11 +207,11 @@
     .hero-separator {
       width: 48px;
       height: 1px;
-      background: var(--teal);
+      background: var(--accent);
       opacity: 0;
       margin: 0 auto 2.5rem;
       animation: fadeIn 1s 0.8s var(--ease-out) forwards;
-      box-shadow: 0 0 12px var(--teal-dim);
+      box-shadow: 0 0 12px var(--accent-dim);
     }
 
     .hero-coming-soon {
@@ -274,7 +273,6 @@
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
-      border-radius: 8px;
       overflow: hidden;
     }
 
@@ -311,9 +309,8 @@
       display: inline-block;
       width: 6px;
       height: 6px;
-      border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 8px var(--teal-dim);
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-dim);
       flex-shrink: 0;
     }
 
@@ -325,6 +322,43 @@
 
     .build-card-desc a {
       font-weight: 500;
+    }
+
+    /* ===== AGENT 306 NFT ART ===== */
+    .agent-nft-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .agent-nft-art {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      box-shadow: 0 0 20px 6px rgba(249, 115, 22, 0.12), 0 0 40px 10px rgba(249, 115, 22, 0.04);
+      border: none;
+    }
+
+    .agent-nft-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      min-width: 0;
+    }
+
+    @media (max-width: 480px) {
+      .agent-nft-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .agent-nft-art {
+        width: 64px;
+        height: 64px;
+      }
     }
 
     /* ===== MISSION ===== */
@@ -346,7 +380,7 @@
     }
 
     .mission-quote em {
-      color: var(--teal);
+      color: var(--accent);
       font-style: normal;
       font-weight: 500;
     }
@@ -375,14 +409,13 @@
     }
 
     .community-link:hover {
-      color: var(--teal);
+      color: var(--accent);
       opacity: 1;
     }
 
     .community-link-icon {
       width: 40px;
       height: 40px;
-      border-radius: 50%;
       border: 1px solid var(--border-light);
       display: flex;
       align-items: center;
@@ -391,8 +424,8 @@
     }
 
     .community-link:hover .community-link-icon {
-      border-color: var(--teal);
-      background: var(--teal-dim);
+      border-color: var(--accent);
+      background: var(--accent-dim);
     }
 
     .community-link-icon svg {
@@ -503,24 +536,91 @@
     <section class="hero" role="banner">
 
       <!-- NormiesTV Logo Mark: broadcast screen + signal arcs -->
-      <svg class="logo-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="NormiesTV logo">
+      <svg class="logo-mark" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="NormiesTV broadcast icon">
         <!-- Outer screen bezel -->
-        <rect x="12" y="16" width="56" height="40" rx="4" stroke="#2dd4bf" stroke-width="2"/>
+        <rect x="12" y="16" width="56" height="40" stroke="#f97316" stroke-width="2"/>
         <!-- Inner screen area -->
-        <rect x="18" y="22" width="44" height="28" rx="2" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+        <rect x="18" y="22" width="44" height="28" stroke="rgba(249,115,22,0.2)" stroke-width="1"/>
         <!-- Stand/base -->
-        <path d="M30 56L34 62 H46 L50 56" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M30 56L34 62 H46 L50 56" stroke="#f97316" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
         <!-- Broadcast signal arcs (emanating from center-top) -->
-        <path class="signal-wave" d="M33 12 A8 8 0 0 1 47 12" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
-        <path class="signal-wave" d="M28 8 A13 13 0 0 1 52 8" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.45"/>
-        <path class="signal-wave" d="M23 4 A18 18 0 0 1 57 4" stroke="#2dd4bf" stroke-width="1.25" stroke-linecap="round" fill="none" opacity="0.2"/>
+        <path class="signal-wave" d="M33 12 A8 8 0 0 1 47 12" stroke="#f97316" stroke-width="1.5" stroke-linecap="square" fill="none" opacity="0.7"/>
+        <path class="signal-wave" d="M28 8 A13 13 0 0 1 52 8" stroke="#f97316" stroke-width="1.5" stroke-linecap="square" fill="none" opacity="0.45"/>
+        <path class="signal-wave" d="M23 4 A18 18 0 0 1 57 4" stroke="#f97316" stroke-width="1.25" stroke-linecap="square" fill="none" opacity="0.2"/>
         <!-- Live dot -->
-        <circle cx="22" cy="26" r="2" fill="#2dd4bf"/>
-        <circle cx="22" cy="26" r="3" fill="none" stroke="#2dd4bf" stroke-width="0.75" class="pulse-ring"/>
+        <circle cx="22" cy="26" r="2" fill="#f97316"/>
+        <circle cx="22" cy="26" r="3" fill="none" stroke="#f97316" stroke-width="0.75" class="pulse-ring"/>
       </svg>
 
-      <h1 class="hero-title">NormiesTV</h1>
-      <p class="hero-tagline">The CNN of the On-Chain Era</p>
+      <!-- NormiesTV Pixel Logo -->
+      <div class="ntv-logo" role="heading" aria-level="1" aria-label="NormiesTV">
+        <svg viewBox="0 0 252 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Pixel grid font: each letter built from 4px squares on a 28px tall grid (7 rows of 4px) -->
+          <!-- N -->
+          <rect x="0" y="0" width="4" height="28" fill="#e3e5e4"/>
+          <rect x="4" y="4" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="8" y="8" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="12" y="12" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="16" y="0" width="4" height="28" fill="#e3e5e4"/>
+
+          <!-- o -->
+          <rect x="24" y="8" width="16" height="4" fill="#e3e5e4"/>
+          <rect x="24" y="8" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="36" y="8" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="24" y="24" width="16" height="4" fill="#e3e5e4"/>
+
+          <!-- r -->
+          <rect x="44" y="8" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="48" y="8" width="8" height="4" fill="#e3e5e4"/>
+          <rect x="56" y="8" width="4" height="4" fill="#e3e5e4"/>
+
+          <!-- m -->
+          <rect x="64" y="8" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="68" y="8" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="72" y="8" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="76" y="8" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="80" y="8" width="4" height="20" fill="#e3e5e4"/>
+
+          <!-- i -->
+          <rect x="88" y="0" width="4" height="4" fill="#f97316"/>
+          <rect x="88" y="8" width="4" height="20" fill="#e3e5e4"/>
+
+          <!-- e -->
+          <rect x="96" y="8" width="16" height="4" fill="#e3e5e4"/>
+          <rect x="96" y="8" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="96" y="16" width="16" height="4" fill="#e3e5e4"/>
+          <rect x="96" y="24" width="16" height="4" fill="#e3e5e4"/>
+
+          <!-- s -->
+          <rect x="116" y="8" width="16" height="4" fill="#e3e5e4"/>
+          <rect x="116" y="8" width="4" height="12" fill="#e3e5e4"/>
+          <rect x="116" y="16" width="16" height="4" fill="#e3e5e4"/>
+          <rect x="128" y="16" width="4" height="12" fill="#e3e5e4"/>
+          <rect x="116" y="24" width="16" height="4" fill="#e3e5e4"/>
+
+          <!-- T -->
+          <rect x="140" y="0" width="20" height="4" fill="#e3e5e4"/>
+          <rect x="148" y="0" width="4" height="28" fill="#e3e5e4"/>
+
+          <!-- V -->
+          <rect x="164" y="0" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="180" y="0" width="4" height="20" fill="#e3e5e4"/>
+          <rect x="168" y="20" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="176" y="20" width="4" height="4" fill="#e3e5e4"/>
+          <rect x="172" y="24" width="4" height="4" fill="#e3e5e4"/>
+
+          <!-- Accent bar: orange pixel strip under "TV" -->
+          <rect x="140" y="28" width="44" height="0" fill="#f97316"/>
+
+          <!-- Signal bars (broadcast motif) — small pixel squares to the right -->
+          <rect x="192" y="20" width="4" height="8" fill="#f97316" opacity="0.4"/>
+          <rect x="198" y="14" width="4" height="14" fill="#f97316" opacity="0.6"/>
+          <rect x="204" y="8" width="4" height="20" fill="#f97316" opacity="0.8"/>
+          <rect x="210" y="2" width="4" height="26" fill="#f97316" opacity="1"/>
+        </svg>
+      </div>
+
+      <p class="hero-tagline">The Discovery of Web3</p>
 
       <div class="hero-separator" aria-hidden="true"></div>
 
@@ -548,11 +648,20 @@
         </div>
 
         <div class="build-card reveal">
-          <div class="build-card-title">
-            <span class="card-accent" aria-hidden="true"></span>
-            Agent #306
+          <div class="agent-nft-wrapper">
+            <!-- Agent #306 NFT pixel art -->
+            <svg class="agent-nft-art" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-label="Agent #306 pixel art">
+              <rect width="40" height="40" fill="#0a0a0a"/>
+              <rect x="16" y="2" width="8" height="1" fill="#f97316"/><rect x="16" y="3" width="9" height="1" fill="#f97316"/><rect x="14" y="4" width="12" height="1" fill="#f97316"/><rect x="13" y="5" width="15" height="1" fill="#f97316"/><rect x="12" y="6" width="17" height="1" fill="#f97316"/><rect x="11" y="7" width="19" height="1" fill="#f97316"/><rect x="11" y="8" width="19" height="1" fill="#f97316"/><rect x="10" y="9" width="20" height="1" fill="#f97316"/><rect x="9" y="10" width="23" height="1" fill="#f97316"/><rect x="8" y="11" width="10" height="1" fill="#f97316"/><rect x="19" y="11" width="3" height="1" fill="#f97316"/><rect x="25" y="11" width="8" height="1" fill="#f97316"/><rect x="7" y="12" width="8" height="1" fill="#f97316"/><rect x="19" y="12" width="1" height="1" fill="#f97316"/><rect x="21" y="12" width="1" height="1" fill="#f97316"/><rect x="26" y="12" width="7" height="1" fill="#f97316"/><rect x="8" y="13" width="2" height="1" fill="#f97316"/><rect x="16" y="13" width="1" height="1" fill="#f97316"/><rect x="19" y="13" width="1" height="1" fill="#f97316"/><rect x="21" y="13" width="1" height="1" fill="#f97316"/><rect x="30" y="13" width="3" height="1" fill="#f97316"/><rect x="9" y="14" width="1" height="1" fill="#f97316"/><rect x="11" y="14" width="1" height="1" fill="#f97316"/><rect x="15" y="14" width="1" height="1" fill="#f97316"/><rect x="18" y="14" width="3" height="1" fill="#f97316"/><rect x="24" y="14" width="3" height="1" fill="#f97316"/><rect x="9" y="15" width="1" height="1" fill="#f97316"/><rect x="13" y="15" width="3" height="1" fill="#f97316"/><rect x="17" y="15" width="3" height="1" fill="#f97316"/><rect x="22" y="15" width="2" height="1" fill="#f97316"/><rect x="27" y="15" width="2" height="1" fill="#f97316"/><rect x="30" y="15" width="1" height="1" fill="#f97316"/><rect x="10" y="16" width="1" height="1" fill="#f97316"/><rect x="13" y="16" width="2" height="1" fill="#f97316"/><rect x="16" y="16" width="2" height="1" fill="#f97316"/><rect x="23" y="16" width="2" height="1" fill="#f97316"/><rect x="26" y="16" width="2" height="1" fill="#f97316"/><rect x="11" y="17" width="1" height="1" fill="#f97316"/><rect x="13" y="17" width="2" height="1" fill="#f97316"/><rect x="16" y="17" width="2" height="1" fill="#f97316"/><rect x="24" y="17" width="4" height="1" fill="#f97316"/><rect x="29" y="17" width="1" height="1" fill="#f97316"/><rect x="13" y="18" width="1" height="1" fill="#f97316"/><rect x="15" y="18" width="3" height="1" fill="#f97316"/><rect x="23" y="18" width="3" height="1" fill="#f97316"/><rect x="27" y="18" width="1" height="1" fill="#f97316"/><rect x="30" y="18" width="1" height="1" fill="#f97316"/><rect x="10" y="19" width="1" height="1" fill="#f97316"/><rect x="12" y="19" width="2" height="1" fill="#f97316"/><rect x="27" y="19" width="2" height="1" fill="#f97316"/><rect x="13" y="20" width="1" height="1" fill="#f97316"/><rect x="21" y="20" width="1" height="1" fill="#f97316"/><rect x="27" y="20" width="1" height="1" fill="#f97316"/><rect x="11" y="21" width="2" height="1" fill="#f97316"/><rect x="14" y="21" width="1" height="1" fill="#f97316"/><rect x="27" y="21" width="1" height="1" fill="#f97316"/><rect x="29" y="21" width="1" height="1" fill="#f97316"/><rect x="12" y="22" width="1" height="1" fill="#f97316"/><rect x="14" y="22" width="1" height="1" fill="#f97316"/><rect x="28" y="22" width="1" height="1" fill="#f97316"/><rect x="30" y="22" width="1" height="1" fill="#f97316"/><rect x="10" y="23" width="1" height="1" fill="#f97316"/><rect x="12" y="23" width="1" height="1" fill="#f97316"/><rect x="14" y="23" width="1" height="1" fill="#f97316"/><rect x="18" y="23" width="5" height="1" fill="#f97316"/><rect x="26" y="23" width="2" height="1" fill="#f97316"/><rect x="29" y="23" width="2" height="1" fill="#f97316"/><rect x="10" y="24" width="2" height="1" fill="#f97316"/><rect x="13" y="24" width="3" height="1" fill="#f97316"/><rect x="25" y="24" width="2" height="1" fill="#f97316"/><rect x="29" y="24" width="2" height="1" fill="#f97316"/><rect x="11" y="25" width="1" height="1" fill="#f97316"/><rect x="14" y="25" width="4" height="1" fill="#f97316"/><rect x="24" y="25" width="3" height="1" fill="#f97316"/><rect x="29" y="25" width="1" height="1" fill="#f97316"/><rect x="12" y="26" width="2" height="1" fill="#f97316"/><rect x="15" y="26" width="4" height="1" fill="#f97316"/><rect x="22" y="26" width="2" height="1" fill="#f97316"/><rect x="25" y="26" width="1" height="1" fill="#f97316"/><rect x="28" y="26" width="1" height="1" fill="#f97316"/><rect x="13" y="27" width="1" height="1" fill="#f97316"/><rect x="17" y="27" width="7" height="1" fill="#f97316"/><rect x="27" y="27" width="1" height="1" fill="#f97316"/><rect x="14" y="28" width="1" height="1" fill="#f97316"/><rect x="16" y="28" width="9" height="1" fill="#f97316"/><rect x="26" y="28" width="1" height="1" fill="#f97316"/><rect x="17" y="29" width="7" height="1" fill="#f97316"/><rect x="25" y="29" width="1" height="1" fill="#f97316"/><rect x="15" y="30" width="1" height="1" fill="#f97316"/><rect x="22" y="30" width="1" height="1" fill="#f97316"/><rect x="13" y="31" width="3" height="1" fill="#f97316"/><rect x="18" y="31" width="1" height="1" fill="#f97316"/><rect x="25" y="31" width="3" height="1" fill="#f97316"/><rect x="9" y="32" width="8" height="1" fill="#f97316"/><rect x="18" y="32" width="1" height="1" fill="#f97316"/><rect x="24" y="32" width="9" height="1" fill="#f97316"/><rect x="7" y="33" width="1" height="1" fill="#f97316"/><rect x="10" y="33" width="9" height="1" fill="#f97316"/><rect x="22" y="33" width="9" height="1" fill="#f97316"/><rect x="34" y="33" width="1" height="1" fill="#f97316"/><rect x="6" y="34" width="1" height="1" fill="#f97316"/><rect x="8" y="34" width="1" height="1" fill="#f97316"/><rect x="10" y="34" width="21" height="1" fill="#f97316"/><rect x="32" y="34" width="1" height="1" fill="#f97316"/><rect x="35" y="34" width="1" height="1" fill="#f97316"/><rect x="10" y="35" width="21" height="1" fill="#f97316"/><rect x="33" y="35" width="1" height="1" fill="#f97316"/><rect x="35" y="35" width="1" height="1" fill="#f97316"/><rect x="11" y="36" width="19" height="1" fill="#f97316"/><rect x="5" y="37" width="1" height="1" fill="#f97316"/><rect x="11" y="37" width="19" height="1" fill="#f97316"/><rect x="31" y="37" width="1" height="1" fill="#f97316"/><rect x="36" y="37" width="1" height="1" fill="#f97316"/><rect x="5" y="38" width="1" height="1" fill="#f97316"/><rect x="9" y="38" width="22" height="1" fill="#f97316"/><rect x="36" y="38" width="1" height="1" fill="#f97316"/><rect x="5" y="39" width="1" height="1" fill="#f97316"/><rect x="9" y="39" width="22" height="1" fill="#f97316"/><rect x="35" y="39" width="2" height="1" fill="#f97316"/>
+            </svg>
+            <div class="agent-nft-text">
+              <div class="build-card-title">
+                <span class="card-accent" aria-hidden="true"></span>
+                Agent #306
+              </div>
+              <p class="build-card-desc">AI narrator and host. <a href="https://agent306.ai" target="_blank" rel="noopener">agent306.ai&nbsp;&rarr;</a></p>
+            </div>
           </div>
-          <p class="build-card-desc">AI narrator and host. <a href="https://agent306.ai" target="_blank" rel="noopener">agent306.ai&nbsp;&rarr;</a></p>
         </div>
 
         <div class="build-card reveal">
@@ -588,8 +697,8 @@
         <a href="https://warpcast.com/ntv-agent306" target="_blank" rel="noopener" class="community-link">
           <span class="community-link-icon">
             <!-- Farcaster icon (simplified) -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
+              <path d="M4 4h16v12a0 0 0 0 1 0 0H4a0 0 0 0 1 0 0V4z"/>
               <path d="M2 4l4 0"/>
               <path d="M18 4l4 0"/>
               <path d="M9 20h6"/>
@@ -604,11 +713,11 @@
         <a href="https://www.normies.art" target="_blank" rel="noopener" class="community-link">
           <span class="community-link-icon">
             <!-- Grid icon for NFT collection -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="7" height="7" rx="1"/>
-              <rect x="14" y="3" width="7" height="7" rx="1"/>
-              <rect x="3" y="14" width="7" height="7" rx="1"/>
-              <rect x="14" y="14" width="7" height="7" rx="1"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
             </svg>
           </span>
           <span class="community-link-label">NORMIES</span>
@@ -618,10 +727,10 @@
         <a href="https://agent306.ai" target="_blank" rel="noopener" class="community-link">
           <span class="community-link-icon">
             <!-- Agent/AI icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="4"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
+              <rect x="6" y="4" width="12" height="8"/>
               <path d="M6 20v-2a6 6 0 0 1 12 0v2"/>
-              <circle cx="12" cy="8" r="1" fill="currentColor" stroke="none"/>
+              <rect x="11" y="7" width="2" height="2" fill="currentColor" stroke="none"/>
             </svg>
           </span>
           <span class="community-link-label">Agent #306</span>
