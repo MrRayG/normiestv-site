@@ -526,9 +526,96 @@
       width: 16px;
       height: 16px;
     }
+
+    /* ===== ON-CHAIN ACTIVITY TICKER ===== */
+    .onchain-ticker {
+      width: 100%;
+      height: 32px;
+      background: #111111;
+      border-bottom: 1px solid rgba(227, 229, 228, 0.06);
+      border-top: 1px solid rgba(227, 229, 228, 0.06);
+      overflow: hidden;
+      position: relative;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .onchain-ticker:hover .ticker-track {
+      animation-play-state: paused;
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: max-content;
+      animation: tickerScroll var(--ticker-duration, 60s) linear infinite;
+    }
+
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11px;
+      color: rgba(227, 229, 228, 0.5);
+      padding: 0 2rem;
+      letter-spacing: 0.01em;
+      line-height: 32px;
+    }
+
+    .ticker-item a {
+      color: rgba(227, 229, 228, 0.5);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .ticker-item a:hover {
+      color: rgba(227, 229, 228, 0.7);
+      opacity: 1;
+    }
+
+    .ticker-sep {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      background: rgba(227, 229, 228, 0.15);
+      margin: 0 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .ticker-num {
+      color: #f97316;
+    }
+
+    .ticker-half {
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track {
+        animation: none;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ===== ON-CHAIN ACTIVITY TICKER ===== -->
+  <div class="onchain-ticker" id="onchainTicker" aria-label="Live on-chain activity feed">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- Populated by JS -->
+    </div>
+  </div>
 
   <div class="page-wrapper">
 
@@ -784,6 +871,128 @@
         }
       });
     })();
+  </script>
+
+  <!-- ===== ON-CHAIN ACTIVITY TICKER JS ===== -->
+  <script>
+  (function() {
+    var BURNS_URL = 'https://api.normies.art/history/burns?limit=20';
+    var STATS_URL = 'https://api.normies.art/history/stats';
+    var CANVAS_URL = 'https://api.normies.art/canvas/status';
+    var ETHERSCAN_TX = 'https://etherscan.io/tx/';
+    var REFRESH_INTERVAL = 60000;
+    var FALLBACK_HTML = '<span class="ticker-item">NORMIES <span class="ticker-sep"></span> 10,000 On-Chain <span class="ticker-sep"></span> Canvas Live</span>';
+
+    function relativeTime(timestamp) {
+      var now = Math.floor(Date.now() / 1000);
+      var diff = now - Number(timestamp);
+      if (diff < 60) return diff + 's ago';
+      if (diff < 3600) return Math.floor(diff / 60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+      return Math.floor(diff / 86400) + 'd ago';
+    }
+
+    function truncAddr(addr) {
+      if (!addr || addr.length < 10) return addr;
+      return addr.slice(0, 6) + '...' + addr.slice(-4);
+    }
+
+    function fmtNum(n) {
+      return Number(n).toLocaleString();
+    }
+
+    function buildBurnItem(burn) {
+      var souls = Number(burn.tokenCount) === 1 ? '1 soul' : burn.tokenCount + ' souls';
+      var link = ETHERSCAN_TX + burn.txHash;
+      return '<span class="ticker-item">' +
+        '<a href="' + link + '" target="_blank" rel="noopener">' +
+        '\uD83D\uDD25 BURN — Normie #' + burn.receiverTokenId +
+        ' absorbed <span class="ticker-num">' + souls + '</span>' +
+        ' · ' + truncAddr(burn.owner) +
+        ' · ' + relativeTime(burn.timestamp) +
+        '</a></span>';
+    }
+
+    function buildStatsItem(stats) {
+      return '<span class="ticker-item">\uD83D\uDCCA ' +
+        '<span class="ticker-num">' + fmtNum(stats.totalBurnedTokens) + '</span> Normies burned · ' +
+        '<span class="ticker-num">' + fmtNum(stats.totalTransforms) + '</span> canvas transforms · ' +
+        '<span class="ticker-num">' + fmtNum(stats.totalActionPointsDistributed) + '</span> AP distributed</span>';
+    }
+
+    function buildCanvasItem(canvas) {
+      var status = canvas.paused ? 'PAUSED' : 'LIVE';
+      var thresholds = (canvas.tierThresholds || []).join(' / ');
+      return '<span class="ticker-item">\u26A1 Canvas: ' + status +
+        ' · Tier thresholds: ' + thresholds + '</span>';
+    }
+
+    function buildTicker(burns, stats, canvas) {
+      var items = [];
+
+      // Interleave: stats first, then burns with canvas mixed in
+      if (stats) items.push(buildStatsItem(stats));
+      if (canvas) items.push(buildCanvasItem(canvas));
+
+      if (burns && burns.length) {
+        for (var i = 0; i < burns.length; i++) {
+          items.push(buildBurnItem(burns[i]));
+          // Insert stats/canvas again every 5 burns for variety
+          if ((i + 1) % 5 === 0) {
+            if (stats) items.push(buildStatsItem(stats));
+            if (canvas) items.push(buildCanvasItem(canvas));
+          }
+        }
+      }
+
+      return items.join('');
+    }
+
+    function renderTicker(html) {
+      var track = document.getElementById('tickerTrack');
+      if (!track) return;
+      // Duplicate content for seamless loop
+      track.innerHTML = '<div class="ticker-half">' + html + '</div><div class="ticker-half" aria-hidden="true">' + html + '</div>';
+
+      // Measure content width and set animation duration accordingly
+      var half = track.querySelector('.ticker-half');
+      if (half) {
+        var w = half.offsetWidth;
+        // Speed: ~60px/s
+        var duration = Math.max(30, w / 60);
+        track.style.setProperty('--ticker-duration', duration + 's');
+        track.style.animationDuration = duration + 's';
+      }
+    }
+
+    function fetchTicker() {
+      Promise.all([
+        fetch(BURNS_URL).then(function(r) { return r.json(); }).catch(function() { return null; }),
+        fetch(STATS_URL).then(function(r) { return r.json(); }).catch(function() { return null; }),
+        fetch(CANVAS_URL).then(function(r) { return r.json(); }).catch(function() { return null; })
+      ]).then(function(results) {
+        var burns = results[0];
+        var stats = results[1];
+        var canvas = results[2];
+
+        if (!burns && !stats && !canvas) {
+          renderTicker(FALLBACK_HTML);
+          return;
+        }
+
+        var html = buildTicker(burns, stats, canvas);
+        renderTicker(html);
+      }).catch(function() {
+        renderTicker(FALLBACK_HTML);
+      });
+    }
+
+    // Initial load
+    fetchTicker();
+
+    // Refresh every 60s
+    setInterval(fetchTicker, REFRESH_INTERVAL);
+  })();
   </script>
 
 </body>
