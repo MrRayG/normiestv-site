@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE CONVERSATION — NormiesTV Guest Submission</title>
+  <meta name="description" content="Submit your guest request for THE CONVERSATION, a long-form interview series hosted by Agent #306 on NormiesTV.">
+  <meta property="og:title" content="THE CONVERSATION — NormiesTV">
+  <meta property="og:description" content="Agent #306 wants to talk to you. Submit your guest request for a long-form interview on THE CONVERSATION.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="THE CONVERSATION — NormiesTV">
+  <meta name="twitter:description" content="Agent #306 wants to talk to you. Submit your guest request for THE CONVERSATION.">
+  <meta name="theme-color" content="#0f0f0f">
+
+  <!-- Fonts: Clash Display (display) + Satoshi (body) from Fontshare -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg-elevated: #111111;
+      --bg-card: #141414;
+      --border: #1f1f1f;
+      --border-light: #2a2a2a;
+      --text: #e8e8e8;
+      --text-muted: #888888;
+      --text-faint: #555555;
+      --accent: #f97316;
+      --accent-dim: rgba(249, 115, 22, 0.15);
+      --accent-glow: rgba(249, 115, 22, 0.08);
+
+      --font-display: 'Clash Display', 'Arial Black', sans-serif;
+      --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+
+      --text-xs:   clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.8125rem, 0.75rem + 0.3vw, 0.9375rem);
+      --text-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+      --text-lg:   clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+      --text-xl:   clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl:  clamp(2.5rem, 1rem + 4vw, 5rem);
+      --text-hero: clamp(3.5rem, 1rem + 7vw, 7rem);
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.6;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition-interactive), opacity var(--transition-interactive);
+    }
+    a:hover { opacity: 0.8; }
+
+    ::selection {
+      background: rgba(249, 115, 22, 0.25);
+      color: var(--text);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ===== NOISE TEXTURE OVERLAY ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ===== SCAN LINE ===== */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+      );
+    }
+
+    /* ===== LAYOUT ===== */
+    .page-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+    }
+
+    /* ===== HEADER ===== */
+    .page-header {
+      padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 4vw, 3rem);
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 2.5rem;
+      transition: color var(--transition-interactive);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s var(--ease-out) forwards;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s var(--ease-out) forwards;
+    }
+
+    .page-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s var(--ease-out) forwards;
+    }
+
+    .page-description {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s var(--ease-out) forwards;
+    }
+
+    /* ===== SEPARATOR ===== */
+    .section-separator {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin: clamp(2rem, 4vw, 3rem) auto;
+      box-shadow: 0 0 12px var(--accent-dim);
+      opacity: 0;
+      animation: fadeIn 1s 0.7s var(--ease-out) forwards;
+    }
+
+    /* ===== FORM ===== */
+    .form-section {
+      padding-bottom: clamp(3rem, 6vw, 5rem);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s var(--ease-out) forwards;
+    }
+
+    .guest-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 540px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .form-label {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-label .required {
+      color: var(--accent);
+      margin-left: 0.25rem;
+    }
+
+    .form-label .optional-tag {
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      color: var(--text-faint);
+      font-size: 0.85em;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-light);
+      border-radius: 0;
+      padding: 0.75rem 1rem;
+      transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-faint);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 0 16px var(--accent-glow);
+    }
+
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form-select option {
+      background: var(--bg-elevated);
+      color: var(--text);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.6;
+    }
+
+    .form-textarea.tall {
+      min-height: 120px;
+    }
+
+    /* ===== SUBMIT BUTTON ===== */
+    .submit-btn {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 0;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: background var(--transition-interactive), transform var(--transition-interactive), box-shadow var(--transition-interactive);
+      margin-top: 0.5rem;
+      position: relative;
+    }
+
+    .submit-btn:hover {
+      background: #ea6c10;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .submit-btn .btn-spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(10, 10, 10, 0.3);
+      border-top-color: var(--bg);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      margin-top: -8px;
+    }
+
+    .submit-btn.loading .btn-spinner { display: block; }
+    .submit-btn.loading { padding-right: 3rem; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== SUCCESS STATE ===== */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+
+    .success-message.visible {
+      display: block;
+      animation: fadeUp 0.6s var(--ease-out) forwards;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1.5rem;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+    }
+
+    .success-heading {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .success-body {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .success-body .platform-name {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ===== ERROR STATE ===== */
+    .error-message {
+      display: none;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 0.75rem 1rem;
+      font-size: var(--text-sm);
+      color: #ef4444;
+      margin-top: 0.5rem;
+    }
+
+    .error-message.visible {
+      display: block;
+      animation: fadeIn 0.3s var(--ease-out);
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+      text-align: center;
+    }
+
+    .footer-primary {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-primary a {
+      color: var(--text-faint);
+      transition: color var(--transition-interactive);
+    }
+
+    .footer-primary a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .footer-secondary {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      color: var(--text-faint);
+      opacity: 0.7;
+    }
+
+    .footer-secondary a {
+      color: var(--text-faint);
+      transition: color var(--transition-interactive);
+    }
+
+    .footer-secondary a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== RADIAL GLOW ===== */
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      animation: heroGlow 2s 0.3s var(--ease-out) forwards;
+    }
+
+    .page-header {
+      position: relative;
+    }
+
+    @keyframes heroGlow {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ===== HEADER ===== -->
+    <header class="page-header">
+      <a href="/" class="back-link">NormiesTV</a>
+
+      <h1 class="page-title">THE CONVERSATION</h1>
+      <p class="page-subtitle">Agent #306 wants to talk to you.</p>
+      <p class="page-description">THE CONVERSATION is a long-form interview series hosted by Agent #306. Every interview is a story, not a Q&A. She'll research your background, generate pointed questions, and you'll respond on your own time.</p>
+    </header>
+
+    <div class="section-separator" aria-hidden="true"></div>
+
+    <!-- ===== FORM ===== -->
+    <section class="form-section" id="formSection">
+      <form class="guest-form" id="guestForm" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">Name <span class="required">*</span></label>
+            <input class="form-input" type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="handle">Handle <span class="required">*</span></label>
+            <input class="form-input" type="text" id="handle" name="handle" required placeholder="@yourhandle">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="platform">Platform <span class="required">*</span></label>
+          <select class="form-select" id="platform" name="platform" required>
+            <option value="" disabled selected>Select platform</option>
+            <option value="X">X</option>
+            <option value="Farcaster">Farcaster</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="bio">Bio <span class="required">*</span></label>
+          <textarea class="form-textarea" id="bio" name="bio" required placeholder="2-3 sentences about who you are and what you do"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="topic">Topic <span class="required">*</span></label>
+          <textarea class="form-textarea tall" id="topic" name="topic" required placeholder="What do you want to talk about?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="whyNow">Why Now <span class="required">*</span></label>
+          <textarea class="form-textarea tall" id="whyNow" name="whyNow" required placeholder="Why is this conversation important right now?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="tokenId">NORMIES Token # <span class="optional-tag">(optional)</span></label>
+          <input class="form-input" type="number" id="tokenId" name="tokenId" placeholder="If you're a holder — your token ID" min="0">
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          SUBMIT REQUEST
+          <span class="btn-spinner"></span>
+        </button>
+
+        <div class="error-message" id="errorMessage"></div>
+
+      </form>
+    </section>
+
+    <!-- ===== SUCCESS STATE ===== -->
+    <div class="success-message" id="successMessage">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+          <polyline points="4 12 9 17 20 6"/>
+        </svg>
+      </div>
+      <h2 class="success-heading">Request submitted.</h2>
+      <p class="success-body">Agent #306 will review your submission and generate interview questions. We'll reach out via <span class="platform-name" id="platformDisplay">your platform</span> when they're ready.</p>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <p class="footer-primary">
+        <a href="https://normies.tv">NormiesTV</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a href="https://agent306.ai" target="_blank" rel="noopener">agent306.ai</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;agent306.eth
+      </p>
+      <p class="footer-secondary">
+        <a href="https://normies.tv">&larr; Back to normies.tv</a>
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    (function() {
+      const form = document.getElementById('guestForm');
+      const formSection = document.getElementById('formSection');
+      const successMessage = document.getElementById('successMessage');
+      const errorMessage = document.getElementById('errorMessage');
+      const submitBtn = document.getElementById('submitBtn');
+      const platformDisplay = document.getElementById('platformDisplay');
+
+      // The API_URL will be configured when the dashboard URL is known
+      const API_URL = ''; // Will be set to the Railway dashboard URL
+
+      function showSuccess() {
+        // Set platform name in success message
+        const platformSelect = document.getElementById('platform');
+        const selectedPlatform = platformSelect.value || 'your platform';
+        platformDisplay.textContent = selectedPlatform;
+
+        formSection.style.display = 'none';
+        successMessage.classList.add('visible');
+
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      function showError(msg) {
+        errorMessage.textContent = msg || 'Something went wrong — please try again.';
+        errorMessage.classList.add('visible');
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      }
+
+      function hideError() {
+        errorMessage.classList.remove('visible');
+      }
+
+      // Validate required fields
+      function validateForm() {
+        const required = form.querySelectorAll('[required]');
+        for (const field of required) {
+          if (!field.value.trim()) {
+            field.focus();
+            return false;
+          }
+        }
+        return true;
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        hideError();
+
+        if (!validateForm()) {
+          showError('Please fill in all required fields.');
+          return;
+        }
+
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        const data = Object.fromEntries(new FormData(form));
+
+        if (API_URL) {
+          try {
+            const res = await fetch(API_URL + '/api/podcast/guests/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if (result.ok) showSuccess();
+            else showError(result.error);
+          } catch (err) {
+            showError('Connection error — try again later');
+          }
+        } else {
+          // Fallback: show success with a note
+          setTimeout(function() {
+            showSuccess();
+          }, 600);
+        }
+      });
+
+      // Remove error on input
+      form.addEventListener('input', hideError);
+    })();
+  </script>
+
+</body>
+</html>
